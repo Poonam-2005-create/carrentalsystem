@@ -56,11 +56,12 @@
 <h1 class="text-white text-center mt-5">Car Rentals in Ahilyanagar</h1>
 <h3 class="text-white text-center">Book Your Drive Now!</h3>
 </div>
-<button class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">Book Now  <i class="fa-regular fa-face-smile"></i></button>
-  </div>
+<button class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
+  Book Now <i class="fa-regular fa-face-smile"></i>
+</button>
+ </div>
   
-  <!--form modal-->
-  <form th:action="@{/getcar}" method="post" >
+ <form th:action="@{/getcar}" method="post" th:object="${customer}">
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -71,34 +72,42 @@
           </button>
         </div>
         <div class="modal-body">
-        Location 
-        <input type="text" class="form-control" name="location" id="location"  placeholder="Ex.Pune-Ahmednagar"/>
-        Pickup Date
-        <input type="date" class="form-control" name="pickupdate"  id="pickupdate"/>
-        Return Date
-        <input type="date" class="form-control" name="returndate" id="returndate"/>
-       Your Full Name
-        <input type="text" class="form-control" name="cust_name"  id="cust_name"/>
-       Your Mobile Number
-        <input type="text" class="form-control" name="cust_mobile"  id="cust_mobile"/>
-        Your Email Id
-        <input type="text" class="form-control" name="cust_email"  id="cust_email"/><br>
-        Driver Service<br>
-        <select name="driver_service" id="driver_service"class="form-control" >
-          <option></option>
-          <option>Without Driver</option>
-          <option>With Driver</option>
-        </select>
-       How Many Car You want
-        <input type="text" name="car_count" id="car_count"class="form-control" placeholder="Ex-1/2"  >
+          <label>Location</label>
+          <input type="text" class="form-control" name="location" th:field="*{location}" placeholder="Ex. Pune-Ahmednagar" />
+
+          <label>Pickup Date</label>
+          <input type="date" class="form-control" name="pickupdate" th:field="*{pickupDate}" />
+
+          <label>Return Date</label>
+          <input type="date" class="form-control" name="returndate" th:field="*{returnDate}" />
+
+          <label>Your Full Name</label>
+          <input type="text" class="form-control" name="cust_name" th:field="*{fullName}" />
+
+          <label>Your Mobile Number</label>
+          <input type="text" class="form-control" name="cust_mobile" th:field="*{mobileNumber}" />
+
+          <label>Your Email Id</label>
+          <input type="email" class="form-control" name="cust_email" th:field="*{emailId}" /><br>
+
+          <label>Driver Service</label>
+          <select name="driver_service" class="form-control" th:field="*{driverService}">
+            <option value="" disabled selected>Select an option</option>
+            <option value="Without Driver">Without Driver</option>
+            <option value="With Driver">With Driver</option>
+          </select>
+
+          <label>How Many Cars You Want</label>
+          <input type="number" name="car_count" class="form-control" th:field="*{carCount}" placeholder="E.g., 1 or 2" />
         </div>
         <div class="modal-footer">
-       <button class="btn btn-success">Get Car</button>
+          <button type="submit" class="btn btn-success">Get Car</button>
         </div>
       </div>
     </div>
   </div>
 </form>
+
   <div class="sticker_getcar">
     <span class="text1">Get car delivered</span>
     <span class="text2">anywhere you want!!!!</span>
